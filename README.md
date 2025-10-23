@@ -72,7 +72,7 @@ Airbyte is available as a
         azure-key-vault-client-id: ## 3fc863e9-4740-4871-bdd4-456903a04d4e
         azure-key-vault-client-secret: ## KWP6egqixiQeQoKqFZuZq2weRbYoVxMH
 
-You can also use kubectl to create the secret directly from the CLI:
+### You can also use kubectl to create the secret directly from the CLI:
         kubectl create secret generic airbyte-config-secrets \
         --from-literal=license-key='' \
         --from-literal=database-host='' \
