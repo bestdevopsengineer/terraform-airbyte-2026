@@ -532,3 +532,21 @@ Airbyte is available as a
                     }
                 ]
             }
+
+        Ensure your airbyte URL matches your ingress host
+        global:
+          airbyteUrl: # e.g. https://airbyte.example.com
+
+        Deploy Self-Managed Enterprise
+        helm install airbyte-enterprise airbyte-v2/airbyte \
+        --namespace airbyte-v2 \       # Target Kubernetes namespace
+        --values ./values.yaml \       # Custom configuration values
+        --version 2.0.3 \              # Helm chart version to use
+        --set global.image.tag=1.7.0   # Airbyte version to use
+
+        Updating Self-Managed Enterprise
+        helm upgrade airbyte-enterprise airbyte-v2/airbyte \
+        --namespace airbyte-v2 \       # Target Kubernetes namespace
+        --values ./values.yaml \       # Custom configuration values
+        --version 2.0.3 \              # Helm chart version to use
+        --set global.image.tag=1.7.0   # Airbyte version to use
