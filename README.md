@@ -88,3 +88,53 @@ Airbyte is available as a
         --from-literal=aws-secret-manager-secret-access-key='' \
         --namespace airbyte
 
+## Installation Steps
+          Step 1: Add Airbyte Helm Repository
+          helm repo add airbyte https://airbytehq.github.io/helm-charts
+          helm repo update
+          helm search repo airbyte
+
+          Step 2: Configure your Deployment
+          created  values.yaml
+          global:
+          edition: enterprise
+          airbyteUrl: # e.g. https://airbyte.company.example
+          auth:
+            instanceAdmin:
+              firstName: ## First name of admin user.
+              lastName: ## Last name of admin user.
+            identityProvider:
+              type: oidc
+              secretName: airbyte-config-secrets ## Name of your Kubernetes secret.
+              oidc:
+                domain: ## e.g. company.example
+                appName: ## e.g. airbyte
+                clientIdSecretKey: client-id
+                clientSecretSecretKey: client-secret
+          
+          Step3:Configuring the Airbyte Database
+          postgresql:
+            enabled: false
+          
+          global: 
+            database:
+              # -- Secret name where database credentials are stored
+              secretName: "" # e.g. "airbyte-config-secrets"
+              # -- The database host
+              host: ""
+              # -- The database port
+              port:
+              # -- The database name - this key used to be "database" in Helm chart 1.0
+              name: ""
+          
+              # Use EITHER user or userSecretKey, but not both
+              # -- The database user
+              user: ""
+              # -- The key within `secretName` where the user is stored
+              userSecretKey: "" # e.g. "database-user"
+          
+              # Use EITHER password or passwordSecretKey, but not both
+              # -- The database password
+              password: ""
+              # -- The key within `secretName` where the password is stored
+              passwordSecretKey: "" # e.g."database-password"
