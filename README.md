@@ -30,9 +30,9 @@ Airbyte is available as a
 
   - External Secrets Manager :	Amazon Secrets Manager for storing connector secrets.
 
-*kubectl create namespace airbyte
+* kubectl create namespace airbyte
 
-*
+* Creating a Kubernetes Secret
       apiVersion: v1
       kind: Secret
       metadata:
